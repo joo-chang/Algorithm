@@ -1,18 +1,16 @@
-# n명의 모험가를 대상으로 공포도 측정
-# 공포도가 x인 모험가는 반드시 x명 이상으로 구성한 모험가 그룹에 참여해야 함
-# 최대 몇 개의 그룹을 만들 수 있을지. 여행을 떠날 수 있는 그룹의 최댓값을 구하는 프로그램 작성
+#정수 n이 입력되면 00시 00분 00초부터 n시 59분 59초까지 모든 시각 중 3이 하나라도 포함되는
+#모든 경우의수를 구하는 프로그램
 
 n = int(input())
-x = list(map(int, input().split()))
-x.sort()
 
-result = 0
 count = 0
 
-for i in x:
-    result += 1
-    if result >= i :
-        result = 0
-        count += 1
+for i in range(n+1):
+    for j in range(60):
+        for k in range(60):
+            # if i%10 == 3 or j%10 == 3 or k%10 == 3 or i//10 == 3 or j//10 == 3 or k//10 == 3:
+            #     count += 1
+            if '3' in str(i) + str(j) + str(k):
+                count += 1
 
 print(count)
