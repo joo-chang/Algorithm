@@ -50,3 +50,49 @@ for i in range(n+1):
 print(count)
 
 
+
+# 8x8 좌표 평면상에서 나이트의 위치가 주어졌을 때 나이트가 이동할 수 있는
+# 경우의수를 출력하는 프로그램
+# ex) 입력 a1 출력 2
+
+input = input()
+x = input[0]
+y = int(input[1])
+xlist = {'a' :1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8}
+x = int(xlist[x])
+count = 0
+
+ways=[(2,-1),(2,1),(1,-2),(1,2),(-2,-1),(-2,1),(-1,-2),(-1,2)]
+
+for way in ways:
+    nx = x + way[0]
+    ny = y + way[1]
+
+    if (nx < 1 or nx > 8) or (ny < 1 or ny > 8):
+        pass
+    else :
+        count +=1
+
+print(count)
+
+
+# 알파벳 대문자와 숫자로만 구성된 문자열이 입력으로 주어짐
+# 이때 모든 알파벳을 오름차순으로 정렬하여 출력한 뒤, 그 뒤에 모든 숫자를 더한 값을 출력
+# ex) K1KA5CB7 -> ABCKK13
+
+string = input()
+sum = 0
+strlist = []
+result = ''
+for i in range(len(string)):
+    if ord(string[i]) >= 48 and ord(string[i]) <= 57:
+        sum += int(string[i])
+    else:
+        strlist.append(string[i])
+
+strlist.sort()
+
+for list in strlist:
+    result += list
+result += str(sum)
+print(result)
