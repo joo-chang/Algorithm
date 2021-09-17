@@ -1,20 +1,19 @@
-# 알파벳 대문자와 숫자로만 구성된 문자열이 입력으로 주어짐
-# 이때 모든 알파벳을 오름차순으로 정렬하여 출력한 뒤, 그 뒤에 모든 숫자를 더한 값을 출력
-# ex) K1KA5CB7 -> ABCKK13
+# n m 크기의 직사각형 형태의 미로에 갇혔습니다.
+# 위치는 (1,1) 이며 미로의 출구는 (n,m) 위치에 존재. 한번에 한칸씩 이동가능
+# 괴물 있는 부분 0 괴물 없는 부분 1
+# 첫째 줄에 두 정수 n m 이 주어지고 각가의 수들은 공백 없이 붙여서 입력으로 제시
+# 시각칸과 마지막칸은 항상 1
+# ex) 5 6
+# 101010
+# 111111
+# 000001
+# 111111
+# 111111
+# 최소 이동 칸의 개수
 
-string = input()
-sum = 0
-strlist = []
-result = ''
-for i in range(len(string)):
-    if ord(string[i]) >= 48 and ord(string[i]) <= 57:
-        sum += int(string[i])
-    else:
-        strlist.append(string[i])
+n, m = map(int, input().split())
+graph = []
 
-strlist.sort()
+for i in range(n):
+    graph = list(map(int, input()))
 
-for list in strlist:
-    result += list
-result += str(sum)
-print(result)
