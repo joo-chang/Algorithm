@@ -65,3 +65,54 @@ for i in range(n):
 print(result)
 
 
+# n m 크기의 직사각형 형태의 미로에 갇혔습니다.
+# 위치는 (1,1) 이며 미로의 출구는 (n,m) 위치에 존재. 한번에 한칸씩 이동가능
+# 괴물 있는 부분 0 괴물 없는 부분 1
+# 첫째 줄에 두 정수 n m 이 주어지고 각가의 수들은 공백 없이 붙여서 입력으로 제시
+# 시각칸과 마지막칸은 항상 1
+# ex) 5 6
+# 101010
+# 111111
+# 000001
+# 111111
+# 111111
+# 최소 이동 칸의 개수
+
+from collections import deque
+
+
+def bfs(x, y):
+    queue = deque()
+    queue.append((x, y))
+
+    while queue:
+        x, y = queue.popleft()
+
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if nx < 0 or nx >= n or ny < 0 or ny >= m:
+                continue
+
+            if graph[nx][ny] == 0:
+                continue
+
+            if graph[nx][ny] == 1:
+                graph[nx][ny] = graph[x][y] + 1
+                queue.append((nx, ny))
+    return graph[n - 1][m - 1]
+
+
+n, m = map(int, input().split())
+
+graph = []
+for i in range(n):
+    graph.append(list(map(int, input())))
+
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+print(bfs(0, 0))
+
+
