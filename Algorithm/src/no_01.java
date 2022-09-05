@@ -14,15 +14,14 @@ public class no_01 {
 		Student st3 = new Student("±è½ÂÅÂ","03");
 		
 		ArrayList<Student> stList = new ArrayList<Student>();
-		
-		Scanner sc = new Scanner(System.in);
 
+
+		Scanner sc = new Scanner(System.in);
 
 		stList.add(st1);
 		stList.add(st2);
 		stList.add(st3);
-		
-		
+
 		while(true)
 		{
 			System.out.println("1.ÀÔ·Â 2.Ãâ·Â 3.Á¾·á");
@@ -38,7 +37,7 @@ public class no_01 {
 				continue;
 			case 2:
 				for(Student st : stList) {
-					System.out.println(st.getName());
+					System.out.print(st.getName() + " ");
 					System.out.println(st.getNo());
 				}
 				continue;
@@ -61,6 +60,8 @@ class Student {
 
 	private String name;
 	private String no;
+	private String test;
+
 
 	Student(String name, String no) {
 		super();
@@ -84,8 +85,7 @@ class Student {
 		this.no = no;
 	}
 
-	
-	
+
 }
 
 

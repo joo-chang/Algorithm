@@ -1,5 +1,5 @@
 //*
-// 대소문자 변환 HelLoWorlD >> hELlOwORLd
+// ?????? ??? HelLoWorlD >> hELlOwORLd
 public class no_05 {
 	public static void main(String[] args) {
 		

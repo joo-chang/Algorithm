@@ -1,4 +1,4 @@
-//피보나치 수열
+//?????? ????
 //An = An-1 + An-2
 public class no_02 {
 	public static void main(String[] args) {
