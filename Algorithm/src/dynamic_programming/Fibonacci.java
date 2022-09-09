@@ -19,5 +19,4 @@ public class Fibonacci {
         System.out.println(d[n]);
     }
 
-
 }
