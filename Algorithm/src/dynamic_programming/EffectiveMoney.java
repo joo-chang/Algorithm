@@ -48,5 +48,8 @@ public class EffectiveMoney {
             }
         }
 
+        if (d[m] == 10001) System.out.println(-1);
+        else System.out.println(d[m]);
+
     }
 }
