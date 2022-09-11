@@ -1,5 +1,6 @@
 package dynamic_programming;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /** 효율적인 화폐구성
@@ -30,6 +31,22 @@ public class EffectiveMoney {
         int n = sc.nextInt();
         int m = sc.nextInt();
 
-        
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++){
+            arr[i] = sc.nextInt();
+        }
+
+        int[] d = new int[m + 1];
+        Arrays.fill(d, 10001);
+
+        d[0] = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = arr[i]; j <= m; j++){
+                if (d[j - arr[i]] != 10001){
+                    d[j] = Math.min(d[j], d[j - arr[i]] + 1 );
+                }
+            }
+        }
+
     }
 }
