@@ -38,6 +38,11 @@ public class GoldMine {
                     arr[i][j] = sc.nextInt();
                 }
             }
+            for (int i = 0; i < n; i++){
+                for (int j = 0; j < m; j++){
+                    dp[i][j] = arr[i][j];
+                }
+            }
 
             for (int j = 1; j < m; j++){
                 for (int i = 0; i < n; i++){
