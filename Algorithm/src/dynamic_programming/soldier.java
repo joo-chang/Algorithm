@@ -16,5 +16,7 @@ package dynamic_programming;
  *
  */
 public class soldier {
+    public static void main(String[] args) {
 
+    }
 }
