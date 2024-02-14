@@ -21,7 +21,6 @@ class Solution {
         // 초기값 세팅
         for(String id : id_list){
             map.put(id, new ArrayList<>());
-            repoCnt.put(id, 0);
         }
         // 값 저장
         set.forEach(r -> {
