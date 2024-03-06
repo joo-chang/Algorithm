@@ -18,27 +18,25 @@ class Solution {
 
     public void dfs(int depth, int[] arr){
         if (depth == emoticons.length){
-            int subscribe = 0;
+            int plus = 0;
             int cost = 0;
 
             for (int[] user: users){
-                int userDiscountRate = user[0];
-                int userMaxCost = user[1];
 
                 int sum = 0;
 
                 for (int i = 0; i < emoticons.length; i++){
-                    if (arr[i]>=userDiscountRate){
-                        sum += emoticons[i]/100*(100-arr[i]);
+                    if (arr[i] >= user[0]){
+                        sum += emoticons[i] * (100 - arr[i]) / 100;
                     }
                 }
-                if (sum>=userMaxCost)subscribe++;
-                else cost+=sum;
+                if (sum >= user[1]) plus++;
+                else cost += sum;
             }
-            if (subscribe>answer[0]){
-                answer[0] = subscribe;
+            if (plus > answer[0]){
+                answer[0] = plus;
                 answer[1] = cost;
-            }else if (subscribe == answer[0]){
+            }else if (plus == answer[0]){
                 answer[1] = Math.max(answer[1], cost);
             }
             return;
@@ -48,12 +46,5 @@ class Solution {
             arr[depth] = i;
             dfs(depth + 1, arr);
         }
-    }
-    public int totalCheck(int[] total){
-        int sum = 0;
-        for(int t : total){
-            sum += t;
-        }
-        return sum;
     }
 }
