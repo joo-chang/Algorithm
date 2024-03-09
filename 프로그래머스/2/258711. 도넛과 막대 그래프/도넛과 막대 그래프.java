@@ -24,11 +24,7 @@ class Solution {
             else if (edgeCnt[i][0] >= 2 && edgeCnt[i][1] == 0) top = i;
             else if (edgeCnt[i][0] == 2 && edgeCnt[i][1] > 0) eight += 1;
         }
-        answer[0] = top;
-        answer[1] = edgeCnt[top][0] - stick - eight;
-        answer[2] = stick;
-        answer[3] = eight;
         
-        return answer;
+        return new int[]{top, edgeCnt[top][0] - stick - eight, stick, eight};
     }
 }
