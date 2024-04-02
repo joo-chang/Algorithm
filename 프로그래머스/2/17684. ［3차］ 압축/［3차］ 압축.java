@@ -63,6 +63,7 @@ class Solution {
         List<Integer> ans = new ArrayList<>();
         char c = 'A';
         int num = 27;
+        // 사전 초기 세팅
         for(int i = 1; i <= 26; i++){
             dict.put(String.valueOf(c), i);
             c++;
@@ -72,16 +73,19 @@ class Solution {
             String word = String.valueOf(msg.charAt(i));
             while(true){
                 if(i < msg.length() -1){
+                    // 사전에 (word + 다음 글자) 없을 때까지 반복
                     if(dict.containsKey(word + String.valueOf(msg.charAt(i+1)))){
                         word = word + String.valueOf(msg.charAt(i+1));
                         i++;
                     }else{
+                        // 없으면 사전에 추가, 현재 단어 번호 저장
                         dict.put(word + String.valueOf(msg.charAt(i+1)), num);
                         num++;
                         ans.add(dict.get(word));
                         break;
                     }    
                 }else{
+                    // 마지막 글자면 단어 사전 찾아서 저장
                     ans.add(dict.get(word));
                     break;
                 }
