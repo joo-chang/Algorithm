@@ -29,6 +29,7 @@ class Solution {
                     maps[ny][nx] = maps[n[0]][n[1]] + 1;
                     queue.add(new int[]{ny, nx});
                 }
+                if(ny == maps.length && nx == maps[0].length) break;
             }
         }
         
