@@ -16,11 +16,10 @@ class Solution {
             }
             stack.add(i);
         }
-        for(int i = 0 ; i < answer.length; i++){
-            if(answer[i] == 0){
-                answer[i] = -1;
-            }
+        while(!stack.isEmpty()){
+            answer[stack.pop()] = -1;
         }
+
         return answer;
     }
 }
