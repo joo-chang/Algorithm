@@ -20,8 +20,9 @@ class Solution {
 //         return answer;
 //     }
     /*
-    소요 시간 : 
-    풀이 : 우선순위 큐에 
+    소요 시간 : 15분
+    풀이 : 우선순위 큐에 넣고 꺼내서 K보다 작으면 음식 섞기
+    다 섞었는데 K 이상 음식 못만들면 -1 return
     */
     public int solution(int[] scoville, int K) {
         int result = 0;
