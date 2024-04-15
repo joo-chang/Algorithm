@@ -1,10 +1,9 @@
 import java.util.*;
 class Solution {
     /*
-    소요 시간 : 8:47
+    소요 시간 : 35분
     풀이 : skill을 큐에 넣고 스킬트리 하나씩 비교하면서 배우려는 스킬이 큐에 존재하는데, 큐 맨앞에 배워야할 스킬이 존재한다면 불가능
     큐에 없으면 패스, 맨 앞 값이랑 동일하면 pop()
-    
     */
     public int solution(String skill, String[] skill_trees) {
         int answer = 0;
