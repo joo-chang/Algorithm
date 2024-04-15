@@ -10,11 +10,10 @@ class Solution {
         Arrays.sort(files, (o1, o2) -> {
             String[] arr1 = setFileName(o1);
             String[] arr2 = setFileName(o2);
-            
-            if(arr1[0].toLowerCase().equals(arr2[0].toLowerCase())){
+            if(arr1[0].equals(arr2[0])){
                 return Integer.parseInt(arr1[1]) - Integer.parseInt(arr2[1]);
             }else{
-                return arr1[0].toLowerCase().compareTo(arr2[0].toLowerCase());
+                return arr1[0].compareTo(arr2[0]);
             }
         });
         return files;
@@ -26,7 +25,7 @@ class Solution {
         for(int i = 0 ; i < file.length(); i++){
             if(Character.isDigit(file.charAt(i))){
                 if(!flag){ // 처음으로 숫자가 나왔을 경우
-                    result[0] = file.substring(0, i);
+                    result[0] = file.substring(0, i).toLowerCase();
                     flag = true;
                 }
                 if(i == file.length() - 1){
