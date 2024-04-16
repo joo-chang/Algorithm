@@ -10,7 +10,6 @@ class Solution {
     */
     public int solution(int[] order) {
         int answer = 0;
-        Queue<Integer> queue = new LinkedList<>();
         int loc = 1;
         Stack<Integer> stack = new Stack<>();
         
