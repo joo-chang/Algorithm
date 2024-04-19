@@ -27,7 +27,6 @@ class Solution {
                        b[i][j] == b[i + 1][j] && 
                        b[i][j] == b[i][j + 1] &&
                        b[i][j] == b[i + 1][j + 1]){
-                        System.out.println(j+" "+i);
                         visited[i][j] = true;
                         visited[i + 1][j] = true;
                         visited[i][j + 1] = true;
