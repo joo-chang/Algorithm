@@ -6,7 +6,7 @@ class Solution {
     */ 
     public String solution(int[] numbers) {
         String answer = "";
-        String[] nums = Arrays.stream(numbers).mapToObj(String::valueOf).toArray(String[]::new);
+        String[] nums = Arrays.stream(numbers).mapToObj(x -> String.valueOf(x)).toArray(String[]::new);
         Arrays.sort(nums, (o1,o2) -> {
             return (o2 + o1).compareTo(o1 + o2);
         });
