@@ -1,20 +1,18 @@
-import java.util.Arrays;
-
+import java.util.*;
 class Solution {
-	public String solution(int[] numbers) {
-		String answer = "";
-		String[] str = new String[numbers.length];
-		for (int i = 0; i < numbers.length; i++) {
-			str[i] = String.valueOf(numbers[i]);
-		}
-		Arrays.sort(str, (o1, o2) -> (o2 + o1).compareTo(o1 + o2));
-		
-		if (str[0].equals("0")) return "0";
-
-		for (String s :
-				str) {
-			answer += s;
-		}
-		return answer;
-	}
+    /*
+    소요 시간 : 9:12
+    풀이 : 역순으로 정렬하는데 2자리 이상인 것들은 10으로 나눈 몫을 체크해서 정렬
+    */ 
+    public String solution(int[] numbers) {
+        String answer = "";
+        String[] nums = Arrays.stream(numbers).mapToObj(String::valueOf).toArray(String[]::new);
+        Arrays.sort(nums, (o1,o2) -> {
+            return (o2 + o1).compareTo(o1 + o2);
+        });
+        StringBuffer sb = new StringBuffer();
+        if(nums[0].equals("0")) return "0";
+        Arrays.stream(nums).forEach(x -> sb.append(x));
+        return sb.toString();
+    }
 }
