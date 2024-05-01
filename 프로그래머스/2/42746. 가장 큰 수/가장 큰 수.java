@@ -1,7 +1,7 @@
 import java.util.*;
 class Solution {
     /*
-    소요 시간 : 9:12
+    소요 시간 : 30분
     풀이 : 역순으로 정렬하는데 2자리 이상인 것들은 10으로 나눈 몫을 체크해서 정렬
     */ 
     public String solution(int[] numbers) {
