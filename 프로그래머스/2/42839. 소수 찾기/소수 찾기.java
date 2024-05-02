@@ -1,22 +1,30 @@
 import java.util.*;
 class Solution {
     /*
-    소요 시간 : 2:20
-    풀이 : 모든 경우의 수에 소수 구하기
-    에라토스테네스의 체
+    소요 시간 : 30분
+    풀이 : 모든 경우의 수 구하기
+    모든 경우의 수 중 가장 큰 값으로 소수 구하기(에라토스테네스의 체)
     */
     
     boolean[] visited;
+    boolean[] so;
     Set<Integer> set = new HashSet<>();
     public int solution(String numbers) {
         int answer = 0;
         visited = new boolean[numbers.length()];
         
+        // 모든 경우의 수 구하기
         dfs(0, "", numbers);
         
-        for(int s : set){
+        List<Integer> list = new ArrayList<>(set);
+        // 내림차순 정렬
+        Collections.sort(list, Collections.reverseOrder());
+        // 가장 큰 수로 소수 구하기
+        prime(list.get(0));
+        
+        for(int s : list){
             if(s <= 0) continue;
-            if(!prime(s)){
+            if(!so[s]){
                 answer++;
             }
         }
@@ -40,7 +48,7 @@ class Solution {
     }
     
     boolean prime(int number){
-        boolean[] so = new boolean[number + 1];
+        so = new boolean[number + 1];
         so[0] = true;
         so[1] = true;
         for(int i = 2; i < Math.sqrt(number + 1); i++){
