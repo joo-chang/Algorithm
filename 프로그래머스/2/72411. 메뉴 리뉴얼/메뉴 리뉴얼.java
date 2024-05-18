@@ -1,5 +1,12 @@
 import java.util.*;
 class Solution {
+    /*
+    소요 시간 : 
+    풀이 : 코스 길이별로 반복문 수행
+    모든 주문을 돌면서 코스 길이보다 클 경우 코스 길이 만큼의 모든 주문 조합을 만드는 탐색 수행 
+    - 코스 길이 만큼의 주문이 만들어지면 map에 key : 코스메뉴 , value : 개수 count
+    모든 주문을 돌았을 때 가장 많이 주문한 코스 list에 저장
+    */ 
     static HashMap<String, Integer> map;
     public String[] solution(String[] orders, int[] course) {
         String[] answer = {};
