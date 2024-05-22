@@ -2,7 +2,8 @@ import java.util.*;
 class Solution {
     /*
     소요 시간 :
-    풀이 : 
+    풀이 : 경우의 수 n, n*2/3, n*3/4, n*4/2
+    map에 넣어서 해당 개수만큼 더하기
     */
     public long solution(int[] weights) {
     	long answer = 0;
