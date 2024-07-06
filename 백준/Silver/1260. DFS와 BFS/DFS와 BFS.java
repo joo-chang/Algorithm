@@ -1,74 +1,73 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 class Main {
-    static ArrayList<Integer>[] lists;
+
+    static ArrayList<ArrayList<Integer>> graph;
     static boolean[] visited;
-    static Queue<Integer> queue;
-    public static void main(String[] args) throws IOException {
+    static StringBuilder sb;
+    public static void main(String[] args) throws IOException{
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine());
-
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         int v = Integer.parseInt(st.nextToken());
-        lists = new ArrayList[n+1];
-        visited = new boolean[n+1];
+        graph = new ArrayList<>();
 
-        for(int i = 0 ; i < n + 1; i++){
-            lists[i] = new ArrayList<>();
+
+        for(int i = 0; i <= n; i++){
+            graph.add(new ArrayList<>());
         }
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(bf.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            //양방향 노드 세팅
-            lists[a].add(b);
-            lists[b].add(a);
+            graph.get(a).add(b);
+            graph.get(b).add(a);
         }
-        for (int i = 0; i < lists.length; i++) {
-            Collections.sort(lists[i]);
+        for(ArrayList<Integer> list : graph){
+            Collections.sort(list);
         }
-
+        sb = new StringBuilder();
+        visited = new boolean[n + 1];
         dfs(v);
-        System.out.println();
-        ////// BFS
-        // 방문 배열 초기화
-        visited = new boolean[n+1];
-        queue = new LinkedList<>();
+        System.out.println(sb);
+
+        sb = new StringBuilder();
+        visited = new boolean[n + 1];
         bfs(v);
+        System.out.println(sb);
     }
 
-    // 3부터 시작
-    // 3 true 3이랑 연결 노드 도는데 1들어가고 2들어가. true로 만들어.3 1 2 5
-    static void dfs(int s){
-        if(visited[s]) return;
-        visited[s] = true;
-        System.out.print(s+" ");
-        for (int i : lists[s]) {
-            if (!visited[i]) {
-                dfs(i);
+    private static void dfs(int v) {
+        visited[v] = true;
+        sb.append(v).append(" ");
+
+        for (int n : graph.get(v)){
+            if (!visited[n]) {
+                dfs(n);
             }
         }
     }
 
-    static void bfs(int s) {
-        queue.add(s);
-        visited[s] = true;
-        System.out.print(s + " ");
-        for (int i = 0; i < lists.length; i++) {
-            if(!queue.isEmpty()){
-                int pop = queue.poll();
-                for (int node : lists[pop]) {
-                    if (visited[node]) continue;
-                    System.out.print(node + " ");
-                    queue.add(node);
-                    visited[node] = true;
+    private static void bfs(int v) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(v);
+        visited[v] = true;
+        sb.append(v).append(" ");
+
+        while (!queue.isEmpty()) {
+            int temp = queue.poll();
+
+            for(int n : graph.get(temp)){
+                if (!visited[n]){
+                    queue.add(n);
+                    visited[n] = true;
+                    sb.append(n).append(" ");
                 }
-            }else return;
+            }
         }
     }
+
 }
