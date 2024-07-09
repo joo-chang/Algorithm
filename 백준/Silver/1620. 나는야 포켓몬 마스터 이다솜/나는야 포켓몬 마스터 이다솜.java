@@ -19,14 +19,16 @@ class Main {
             name.put(s, i);
             num[i] = s;
         }
-
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < m; i++) {
             String s = bf.readLine();
             if(s.charAt(0) >= '0' && s.charAt(0) <= '9') {
-                System.out.println(num[Integer.parseInt(s)]);
+                sb.append(num[Integer.parseInt(s)]).append("\n");
             } else {
-                System.out.println(name.get(s));
+                sb.append(name.get(s)).append("\n");
             }
         }
+
+        System.out.println(sb);
     }
 }
