@@ -8,7 +8,7 @@ import java.util.Queue;
 
 class Main {
 
-    static int[][] arr;
+    static boolean[][] arr;
     static boolean[][] visited;
     static int[] dx = {0, 1, 0, -1};
     static int[] dy = {1, 0, -1, 0};
@@ -17,20 +17,22 @@ class Main {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bf.readLine());
 
-        arr = new int[n][n];
+        arr = new boolean[n][n];
         visited = new boolean[n][n];
         result = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
             String line = bf.readLine();
             for (int j = 0; j < n; j++) {
-                arr[i][j] = line.charAt(j) - '0';
+                if (line.charAt(j) - '0' == 1){
+                    arr[i][j] = true;    
+                }
             }
         }
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (!visited[i][j] && arr[i][j] == 1){
+                if (!visited[i][j] && arr[i][j]){
                     bfs(i, j);
                 }
             }
@@ -51,7 +53,7 @@ class Main {
             for (int i = 0; i < 4; i++) {
                 int ny = area[0] + dy[i];
                 int nx = area[1] + dx[i];
-                if (!check(ny, nx) && !visited[ny][nx] && arr[ny][nx] == 1) {
+                if (!check(ny, nx) && !visited[ny][nx] && arr[ny][nx]) {
                     visited[ny][nx] = true;
                     queue.add(new int[]{ny, nx});
                     count++;
