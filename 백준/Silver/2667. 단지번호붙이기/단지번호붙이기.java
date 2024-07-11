@@ -1,69 +1,72 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.io.*;
+import java.util.*;
 
-class Main {
+public class Main {
 
-    static boolean[][] arr;
-    static boolean[][] visited;
-    static int[] dx = {0, 1, 0, -1};
-    static int[] dy = {1, 0, -1, 0};
-    static ArrayList<Integer> result;
-    public static void main(String[] args) throws IOException{
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(bf.readLine());
+    // 사방탐색 델타배열
+    static int[] dr = {-1, 0, 1, 0};
+    static int[] dc = {0, 1, 0, -1};
 
-        arr = new boolean[n][n];
-        visited = new boolean[n][n];
-        result = new ArrayList<>();
+    static int N;
+    static char[][] map;
 
-        for (int i = 0; i < n; i++) {
-            String line = bf.readLine();
-            for (int j = 0; j < n; j++) {
-                if (line.charAt(j) - '0' == 1){
-                    arr[i][j] = true;    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+
+        // 입력 받아서 처리하기
+        N = Integer.parseInt(br.readLine());
+        map = new char[N][N];
+        for(int i=0 ; i<N ; i++){
+            map[i] = br.readLine().toCharArray();
+        }
+
+        // 단지내 집의 수를 오름차순으로 저장하는 PriorityQueue
+        PriorityQueue<Integer> ansList = new PriorityQueue<>();
+
+        // BFS를 통해 단지 내의 집의 수를 구하고 ansList에 추가해줌
+        for(int i=0 ; i<N ; i++){
+            for(int j=0 ; j<N ; j++){
+                if(map[i][j] == '1'){
+                    int cnt = BFS(i, j);
+                    ansList.offer(cnt);
                 }
             }
         }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (!visited[i][j] && arr[i][j]){
-                    bfs(i, j);
-                }
-            }
+        // ansList의 크기가 단지의 수
+        sb.append(ansList.size()).append("\n");
+        while(!ansList.isEmpty()){
+            sb.append(ansList.poll()).append("\n");
         }
 
-        Collections.sort(result);
-        System.out.println(result.size());
-        result.forEach(System.out::println);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
-    private static void bfs(int y, int x) {
-        visited[y][x] = true;
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{y, x});
-        int count = 1;
-        while (!queue.isEmpty()) {
-            int[] area = queue.poll();
-            for (int i = 0; i < 4; i++) {
-                int ny = area[0] + dy[i];
-                int nx = area[1] + dx[i];
-                if (!check(ny, nx) && !visited[ny][nx] && arr[ny][nx]) {
-                    visited[ny][nx] = true;
-                    queue.add(new int[]{ny, nx});
-                    count++;
+    private static int BFS(int r, int c){
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{r, c});
+        map[r][c] = '0';    // 원본 맵을 수정해서 방문체크
+        int cnt = 1;
+
+        while(!q.isEmpty()){
+            int[] node = q.poll();
+
+            for(int dir=0 ; dir<4 ; dir++){
+                int nr = node[0] + dr[dir];
+                int nc = node[1] + dc[dir];
+                if(nr>=0 && nr<N && nc>=0 && nc<N && (map[nr][nc]=='1')){
+                    q.offer(new int[]{nr, nc});
+                    map[nr][nc] = '0';
+                    cnt++;
                 }
             }
-        }
-        result.add(count);
-    }
 
-    private static boolean check(int ny, int nx) {
-        return ny < 0 || nx < 0 || ny >= arr.length || nx >= arr[0].length;
+        }
+
+        return cnt;
     }
 }
