@@ -19,9 +19,12 @@ class Main {
             map.put(st.nextToken(), st.nextToken());
         }
 
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < m; i++) {
-            System.out.println(map.get(bf.readLine()));
+            sb.append(map.get(bf.readLine())).append("\n");
         }
+
+        System.out.println(sb);
     }
 
 }
