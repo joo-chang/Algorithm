@@ -1,45 +1,43 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
-public class Main {
-    static int answer = 0;
-    static int[] parent;
-    static boolean[] visited;
-    static ArrayList<Integer>[] list;
+class Main {
 
+    static ArrayList<ArrayList<Integer>> list;
+    static int[] visited;
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bf.readLine());
-        parent = new int[n + 1];
-        visited = new boolean[n + 1];
-        list = new ArrayList[n + 1];
-        for (int i = 0; i < n + 1; i++) {
-            list[i] = new ArrayList<>();
+        list = new ArrayList<>();
+        visited = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            list.add(new ArrayList<>());
         }
         for (int i = 0; i < n - 1; i++) {
             StringTokenizer st = new StringTokenizer(bf.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-
-            list[a].add(b);
-            list[b].add(a);
+            list.get(a).add(b);
+            list.get(b).add(a);
         }
 
         dfs(1);
-
-        for (int i = 2; i < parent.length; i++) {
-            System.out.println(parent[i]);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 2; i <= n; i++) {
+            sb.append(visited[i]).append("\n");
         }
+        System.out.println(sb);
     }
 
-    static void dfs(int index) {
-        visited[index] = true;
-        for (int i : list[index]) {
-            if (!visited[i]) {
-                parent[i] = index;
-                dfs(i);
+    private static void dfs(int n) {
+        for (int num : list.get(n)) {
+            if (visited[num] == 0) {
+                visited[num] = n;
+                dfs(num);
             }
         }
     }
