@@ -4,10 +4,10 @@ class Solution {
         long answer = 0;
         int max = a > b ? a : b;
         int min = a > b ? b : a;
-        // for(int i = min; i <= max; i++){
-        //     answer += i;
-        // }
-        answer = LongStream.range(min, max + 1).sum();
+        for(int i = min; i <= max; i++){
+            answer += i;
+        }
+        // answer = LongStream.range(min, max + 1).sum();
         return answer;
     }
 }
