@@ -37,15 +37,10 @@ class Solution {
         for(int i = 1; i <= num; i++){
             int ny = y;
             int nx = x;
-            if(route[0].equals("E")){
-                nx += i;
-            }else if(route[0].equals("W")){
-                nx -= i;
-            }else if(route[0].equals("N")){
-                ny -= i;
-            }else if(route[0].equals("S")){
-                ny += i;
-            }
+            if(route[0].equals("E")) nx += i;
+            else if(route[0].equals("W")) nx -= i;
+            else if(route[0].equals("N")) ny -= i;
+            else if(route[0].equals("S")) ny += i;
             
             // 불가능하면 return
             if(check(ny, nx)) return;
@@ -53,15 +48,10 @@ class Solution {
         }
         
         // 가능하면 이동
-        if(route[0].equals("E")){
-            x += num;
-        }else if(route[0].equals("W")){
-            x -= num;
-        }else if(route[0].equals("N")){
-            y -= num;
-        }else if(route[0].equals("S")){
-            y += num;
-        }
+        if(route[0].equals("E")) x += num;
+        else if(route[0].equals("W")) x -= num;
+        else if(route[0].equals("N")) y -= num;
+        else if(route[0].equals("S")) y += num;
     }
     
     public boolean check(int y, int x){
