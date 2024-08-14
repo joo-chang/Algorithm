@@ -6,10 +6,14 @@ class Solution {
         int[] answer = {};
         my = park.length;
         mx = park[0].length();
+        
+        // char array 변환
         parks = new char[my][mx];
         for(int i = 0; i < my; i++){
             parks[i] = park[i].toCharArray();
         }
+        
+        // 시작점 체크
         for(int i = 0; i < my; i++){
             for(int j = 0; j < mx; j++){
                 if(parks[i][j] == 'S') {
@@ -19,6 +23,7 @@ class Solution {
             }
         }
         
+        // routes 돌면서 이동 가능 여부 확인 후 이동
         for(String route : routes){
             String[] r = route.split(" ");
             area(r);
@@ -28,6 +33,7 @@ class Solution {
     
     public void area(String[] route){
         int num = Integer.parseInt(route[1]);
+        // 한 칸씩 이동하면서 가능한지 확인
         for(int i = 1; i <= num; i++){
             int ny = y;
             int nx = x;
@@ -41,9 +47,12 @@ class Solution {
                 ny += i;
             }
             
+            // 불가능하면 return
             if(check(ny, nx)) return;
             if(parks[ny][nx] == 'X') return;
         }
+        
+        // 가능하면 이동
         if(route[0].equals("E")){
             x += num;
         }else if(route[0].equals("W")){
