@@ -2,19 +2,13 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String[] id_list, String[] report, int k) {
-        // 1. 중복 제거
-        // 2. 신고 개수 체크
-        // 3. 각 유저가 신고한 id 체크하면서 k이상인 애들 count
-        // List<String> reportList = new ArrayList<>(new HashSet<>(Arrays.asList(report)));
         
         HashSet<String> set = new HashSet<>();
         
         int[] answer = new int[id_list.length];
         Map<String, List<String>> map = new HashMap<>();
-        Map<String, Integer> repoCnt = new HashMap<>();
-        List<String> van = new ArrayList<>();
+        Map<String, Integer> result = new HashMap<>();
         
-        // 중복 제거
         for(String s : report){
             set.add(s);
         }
@@ -22,30 +16,23 @@ class Solution {
         for(String id : id_list){
             map.put(id, new ArrayList<>());
         }
-        // 값 저장
+        // 누구한테 신고를 받았는지
         set.forEach(r -> {
             String[] repo = r.split(" ");
-            if(!map.containsKey(repo[0])){
-                map.put(repo[0], new ArrayList<>());
-            }
-            map.get(repo[0]).add(repo[1]);
-            repoCnt.put(repo[1], repoCnt.getOrDefault(repo[1], 0) + 1);
+            map.get(repo[1]).add(repo[0]);
         });
         
-        // 정지된 id 추출
-        repoCnt.forEach((key, value) ->{
-            if(value >= k){
-                van.add(key);
+        // 정지된 유저 찾아서 신고한 유저 cnt 증가
+        map.forEach((key, value) -> {
+            if(value.size() >= k){
+                for(String v : value){
+                    result.put(v, result.getOrDefault(v, 0) + 1);
+                }
             }
         });
         
-        // result
-        for(int i = 0 ; i < id_list.length; i++){
-            for(String v : van){
-               if(map.get(id_list[i]).contains(v)){
-                   answer[i]++;
-               } 
-            }
+        for(int i = 0; i < id_list.length; i++){
+            answer[i] = result.getOrDefault(id_list[i], 0);
         }
         
         return answer;
