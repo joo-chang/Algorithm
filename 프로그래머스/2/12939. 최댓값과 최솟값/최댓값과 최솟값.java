@@ -11,6 +11,8 @@ class Solution {
             max = max < n ? n : max;
             min = min > n ? n : min;
         }
-        return min + " " + max;
+        StringBuilder sb = new StringBuilder();
+        sb.append(min).append(" ").append(max);
+        return sb.toString();
     }
 }
