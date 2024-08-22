@@ -12,10 +12,7 @@ class Solution {
 		for (int t : tangerine) {
 			map.put(t, map.getOrDefault(t, 0) + 1);
 		}
-		List<Integer> count = new ArrayList<>();
-		for (Integer c : map.keySet()) {
-			count.add(map.get(c));
-		}
+		List<Integer> count = new ArrayList(map.values());
 		count.sort(Collections.reverseOrder());
 
 		for (int c : count) {
