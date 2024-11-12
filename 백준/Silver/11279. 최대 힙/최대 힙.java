@@ -7,19 +7,19 @@ class Main {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bf.readLine());
         PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
-
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
             int x = Integer.parseInt(bf.readLine());
             if (x == 0) {
                 if (queue.isEmpty()) {
-                    System.out.println(0);
+                    sb.append(0).append('\n');
                 } else {
-                    System.out.println(queue.poll());
+                    sb.append(queue.poll()).append('\n');
                 }
             } else {
                 queue.add(x);
             }
         }
-
+        System.out.println(sb);
     }
 }
