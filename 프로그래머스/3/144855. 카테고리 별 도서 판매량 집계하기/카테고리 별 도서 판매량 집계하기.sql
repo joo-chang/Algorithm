@@ -5,5 +5,5 @@ FROM BOOK b
 ON b.book_id = bs.book_id
 where year(bs.sales_date) = '2022'
 and month(bs.sales_date) = '01'
-GROUP BY b.category
+GROUP BY 1
 order by 1
